@@ -185,14 +185,15 @@ class _EditViewState extends State<EditView> {
   String newContent ;
 
   void update(){
-    FirebaseFirestore.instance.collection('Users').doc(
-        FirebaseAuth.instance.currentUser.uid)
+    FirebaseFirestore.instance.collection('Users')
+        .doc(FirebaseAuth.instance.currentUser.uid)
         .collection('Pages')
-        .doc(widget.docId).update({
-      'title': title,
-      'content': content,
-      'isImportant': isImportant,
-    });
+        .doc(widget.docId)
+        .update({
+           'title': title,
+           'content': content,
+           'isImportant': isImportant,
+        });
   }
 
   @override
@@ -233,7 +234,6 @@ class _EditViewState extends State<EditView> {
                   .doc(widget.docId)
                   .snapshots(),
               builder:
-                  // ignore: missing_return
                   (BuildContext context,
                   AsyncSnapshot<DocumentSnapshot> snapshot) {
                  if(snapshot.connectionState==ConnectionState.active){
@@ -262,12 +262,10 @@ class _EditViewState extends State<EditView> {
                            ),
                          ),
                          TextFormField(
-                           key: Key(title),
                            maxLines: null,
                            initialValue: title,
-                           onChanged: (title){
-                             newTitle=title;
-                             title=newTitle;
+                           onChanged: (String value){
+                             title=value;
                              update();
                            },
                            decoration: InputDecoration(
@@ -280,12 +278,9 @@ class _EditViewState extends State<EditView> {
                            child: TextFormField(
                              maxLines: null,
                              initialValue: content,
-                             onChanged: (content){
-                               setState(() {
-                                 newContent=content;
-                                 content=newContent;
-                                 update();
-                               });
+                             onChanged: (String value){
+                               content=value;
+                               update();
                              },
                              decoration: InputDecoration(
                                  labelText: 'Description',
@@ -306,7 +301,6 @@ class _EditViewState extends State<EditView> {
                    );
                  } else if(snapshot.connectionState==ConnectionState.waiting){
                    return Center(
-
                        child: CircularProgressIndicator());
                  }else {
                    return Container(

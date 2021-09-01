@@ -166,6 +166,7 @@ class _HomePageState extends State<HomePage> {
                                       child: FlatButton.icon(
                                           onPressed: () {
                                              refId = document.id;
+                                             Navigator.pop(context);
                                              Navigator.push(context,
                                              MaterialPageRoute(builder: (context) {
                                                return NotesViewer(docId: refId);
@@ -179,6 +180,7 @@ class _HomePageState extends State<HomePage> {
                                   child: FlatButton.icon(
                                       onPressed: (){
                                         refId = document.id;
+                                        Navigator.pop(context);
                                         Navigator.push(context,
                                             MaterialPageRoute(builder: (context) {
                                               return EditView(docId: refId);
@@ -191,6 +193,7 @@ class _HomePageState extends State<HomePage> {
                                     PopupMenuItem(
                                       child: FlatButton.icon(
                                           onPressed: (){
+                                            Navigator.pop(context);
                                             setState(() {
                                               refId = document.id;
                                               FirebaseFirestore.instance.collection('Users')
