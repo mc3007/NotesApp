@@ -17,7 +17,7 @@ class _NotesViewerState extends State<NotesViewer> {
   String title="(no title)";
   String content="(no content)";
   String dateTime;
-  bool isImportant=false;
+  bool isImportant;
 
   @override
   Widget build(BuildContext context) {
@@ -62,54 +62,32 @@ class _NotesViewerState extends State<NotesViewer> {
               builder:
                   (BuildContext context,
                   AsyncSnapshot<DocumentSnapshot> snapshot) {
-                dynamic data = snapshot.data;
-                title = data['title']==null ? title : data['title'];
-                content = data['content']==null ? content :data['content'];
-                dateTime = data['dateTime'];
-                isImportant=data['isImportant'];
-                return Container(
-                  padding: EdgeInsets.all(10),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              'Title',
-                            ),
-                            Icon(isImportant
-                                ?  Icons.star
-                                :  Icons.star_border,
-                              color: isImportant?  Colors.amberAccent: null,),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              width: 2,
-                              color: Colors.lightBlue
+                if(snapshot.connectionState==ConnectionState.active){
+                  dynamic data = snapshot.data;
+                  title = data['title']==null ? title : data['title'];
+                  content = data['content']==null ? content :data['content'];
+                  dateTime = data['dateTime'];
+                  isImportant=data['isImportant'];
+
+                  return Container(
+                    padding: EdgeInsets.all(10),
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                'Title',
+                              ),
+                              Icon(isImportant
+                                  ?  Icons.star
+                                  :  Icons.star_border,
+                                color: isImportant?  Colors.amberAccent: null,),
+                            ],
                           ),
-                          borderRadius: BorderRadius.circular(5.0),
                         ),
-                        child: Text(
-                          title,
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(top: 10),
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          'Description',
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: Container(
+                        Container(
                           width: MediaQuery.of(context).size.width,
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
@@ -120,22 +98,61 @@ class _NotesViewerState extends State<NotesViewer> {
                             borderRadius: BorderRadius.circular(5.0),
                           ),
                           child: Text(
-                            content,
-                            style: TextStyle(fontSize: 15),
+                            title,
+                            style: TextStyle(fontSize: 20),
                           ),
                         ),
-                      ),
-                      Container(
-                        alignment: Alignment.bottomRight,
-                        child: Text(
-                          dateTime,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 10),
+                        Container(
+                          padding: EdgeInsets.only(top: 10),
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            'Description',
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                );
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 2,
+                                  color: Colors.lightBlue
+                              ),
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            child: Text(
+                              content,
+                              style: TextStyle(fontSize: 15),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.bottomRight,
+                          child: Text(
+                            dateTime,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 10),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                }else if(snapshot.connectionState==ConnectionState.waiting){
+                  return Container(child: Center(child: CircularProgressIndicator()));
+                }else {
+                  return Container(
+                    child: Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Icon(Icons.warning),
+                        ),
+                        Text('Error in loading data')
+                      ],
+                    ),
+                  );
+                }
               },
             ),
           )),

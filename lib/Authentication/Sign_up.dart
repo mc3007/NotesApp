@@ -1,6 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:pages/Authentication/logiIn.dart';
+import 'package:pages/Authentication/logIn.dart';
 import 'package:pages/home.dart';
 import 'package:pages/services/authenticate.dart';
 
@@ -11,7 +10,7 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
 
-  var formkey=GlobalKey<FormState>();
+  var formKey=GlobalKey<FormState>();
 
   TextEditingController email=TextEditingController();
   TextEditingController password=TextEditingController();
@@ -36,7 +35,7 @@ class _SignUpState extends State<SignUp> {
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Form(
-            key:formkey,
+            key:formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -45,6 +44,7 @@ class _SignUpState extends State<SignUp> {
                   child: TextFormField(
                     keyboardType: TextInputType.emailAddress,
                     controller: email,
+                    // ignore: missing_return
                     validator: (String value) {
                       if(value.isEmpty){
                         return emailError;
@@ -72,6 +72,7 @@ class _SignUpState extends State<SignUp> {
                   child: TextFormField(
                     keyboardType: TextInputType.text,
                     controller: password,
+                    // ignore: missing_return
                     validator: (String value) {
                       if(value.isEmpty){
                         return passwordError;
@@ -99,7 +100,7 @@ class _SignUpState extends State<SignUp> {
                   color: Colors.blue,
                   onPressed: () async{
                     bool condition=await signUp(email.text, password.text);
-                    if(formkey.currentState.validate()) {
+                    if(formKey.currentState.validate()) {
                       if(condition){
                         Navigator.pop(context);
                         Navigator.push(context, MaterialPageRoute(

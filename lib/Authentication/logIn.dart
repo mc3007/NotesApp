@@ -10,7 +10,7 @@ class LogIn extends StatefulWidget {
 
 class _LogInState extends State<LogIn> {
 
-  var formkey=GlobalKey<FormState>();
+  var formKey=GlobalKey<FormState>();
 
   TextEditingController email=TextEditingController();
   TextEditingController password=TextEditingController();
@@ -35,7 +35,7 @@ class _LogInState extends State<LogIn> {
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Form(
-            key:formkey,
+            key:formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -44,6 +44,7 @@ class _LogInState extends State<LogIn> {
                   child: TextFormField(
                     keyboardType: TextInputType.emailAddress,
                     controller: email,
+                    // ignore: missing_return
                     validator: (String value) {
                       if(value.isEmpty){
                         return emailError;
@@ -71,6 +72,7 @@ class _LogInState extends State<LogIn> {
                   child: TextFormField(
                     keyboardType: TextInputType.text,
                     controller: password,
+                    // ignore: missing_return
                     validator: (String value) {
                       if(value.isEmpty){
                         return passwordError;
@@ -111,7 +113,7 @@ class _LogInState extends State<LogIn> {
                   color: Colors.blue,
                   onPressed: () async{
                     bool condition=await signIn(email.text,password.text);
-                    if(formkey.currentState.validate()) {
+                    if(formKey.currentState.validate()) {
                       if(condition){
                         Navigator.pop(context);
                         Navigator.push(context, MaterialPageRoute(

@@ -5,7 +5,7 @@ import 'package:pages/new_note.dart';
 import 'package:pages/notesViewer.dart';
 import 'package:pages/services/authenticate.dart';
 
-import 'Authentication/logiIn.dart';
+import 'Authentication/logIn.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -15,7 +15,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   String refId;
-  bool isImportant;
 
   @override
   Widget build(BuildContext context) {
@@ -133,7 +132,7 @@ class _HomePageState extends State<HomePage> {
                                 }));
                               },
                               child: Text(
-                                document.data()['title']!=null? document.data()['title']:'(No title)',
+                                document.data()['title']!=null? document.data()['title']:'(no title)',
                                 maxLines: 1,
                                 style: TextStyle(
                                   fontSize: 20,
