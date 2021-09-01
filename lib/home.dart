@@ -132,7 +132,7 @@ class _HomePageState extends State<HomePage> {
                                 }));
                               },
                               child: Text(
-                                document.data()['title']!=null? document.data()['title']:'(no title)',
+                                document.data()['title']!=null? document.data()['title']:"(no title)",
                                 maxLines: 1,
                                 style: TextStyle(
                                   fontSize: 20,

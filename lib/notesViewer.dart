@@ -139,7 +139,7 @@ class _NotesViewerState extends State<NotesViewer> {
                     ),
                   );
                 }else if(snapshot.connectionState==ConnectionState.waiting){
-                  return Container(child: Center(child: CircularProgressIndicator()));
+                  return Center(child: CircularProgressIndicator());
                 }else {
                   return Container(
                     child: Column(
