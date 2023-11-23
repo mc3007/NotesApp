@@ -5,7 +5,7 @@ A new Flutter Notes application.
 Application demo video : https://drive.google.com/file/d/1xBNa5OWdIrVmo0EWZ6MWb4EFfLG1raeS/view?usp=sharing
 
 ## Screenshots
-https://github.com/mc3007/NotesApp/blob/master/Screenshots/Sign-in%20page.jpg
+![Sign-in page](https://github.com/mc3007/NotesApp/assets/72519016/0611b16a-7135-4474-8077-af922babf0a2)
 
 ## Getting Started
 
