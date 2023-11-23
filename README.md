@@ -1,7 +1,8 @@
 # pages
 
-A new Flutter application.
+A new Flutter Notes application.
 
+Application demo video : https://drive.google.com/file/d/1xBNa5OWdIrVmo0EWZ6MWb4EFfLG1raeS/view?usp=sharing
 ## Getting Started
 
 This project is a starting point for a Flutter application.
