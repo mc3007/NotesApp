@@ -4,6 +4,7 @@ A new Flutter Notes application.
 
 Application demo video : https://drive.google.com/file/d/1xBNa5OWdIrVmo0EWZ6MWb4EFfLG1raeS/view?usp=sharing
 
+## Screenshots
 
 ## Getting Started
 
